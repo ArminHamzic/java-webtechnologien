@@ -1,0 +1,1 @@
+Leider kann ich das Projekt nicht hier ins öffentliche Repo stellen, da ich dieses im Sommer für eine Firma gemacht habe. Allerdings werde ich es in meinem Referat dazu benutzen um den Leuten JSF mit PrimeFaces näher zu bringen.
