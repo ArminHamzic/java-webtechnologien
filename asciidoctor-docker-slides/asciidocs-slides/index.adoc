@@ -1,6 +1,9 @@
 = Java Webtechnologien
-:revealjsdir: reveal.js
-:revealjs_theme: solarized
+Armin Hamzic
+:revealjsdir: revealjs
+:revealjs_customtheme: css/sky.css
+:revealjs_width: 1980
+:revealjs_height: 920
 :imagesdir: images
 
 == Gliederung
@@ -12,7 +15,7 @@
 
 === Common Gateway Interface 
 
-image::cgi.png[]
+image::cgi.png[800,800]
 https://www.ionos.at/digitalguide/websites/web-entwicklung/was-ist-ein-cgi/
 
 === Vor- und Nachteile
@@ -26,7 +29,7 @@ https://www.ionos.at/digitalguide/websites/web-entwicklung/was-ist-ein-cgi/
 
 == Servlets als CGI-Ersatz
 
-image::servlet-skizze.png[]
+image::servlet-skizze.png[800,800]
 https://o7planning.org/de/10169/die-anleitung-zu-java-servlet
 
 === GUI mit Servlets
@@ -184,7 +187,7 @@ doGet(HttpServletRequest request,
 
 === Überblick
 
-image::jsf-skizze.png[]
+image::jsf-skizze.png[800,800]
 https://entwickler.de/online/jsf-ueberblick-und-einsatzzweck-115542.html
 
 === Praktisches Beispiel
