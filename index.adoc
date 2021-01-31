@@ -1,0 +1,246 @@
+= Java Webtechnologien
+Armin Hamzic
+:revealjsdir: revealjs
+:revealjs_customtheme: css/sky.css
+:revealjs_width: 1980
+:revealjs_height: 920
+:imagesdir: images
+
+== Gliederung
+
+* Servlets
+* JSP (Java Server Pages)
+* JSF (JavaServer Faces)
+* Qute
+
+=== Common Gateway Interface 
+
+image::cgi.png[800,800]
+https://www.ionos.at/digitalguide/websites/web-entwicklung/was-ist-ein-cgi/
+
+=== Vor- und Nachteile
+
+* Vorteil
+** Dynamisch Website-Inhalte generieren
+
+* Nachteile
+** Antwortzeit fällt lang aus
+** Sicherheit
+
+== Servlets als CGI-Ersatz
+
+image::servlet-skizze.png[800,800]
+https://o7planning.org/de/10169/die-anleitung-zu-java-servlet
+
+=== Vorteile
+
+* Portabilität
+* Leistungsfähigkeit
+* Effizienz 
+
+=== GUI mit Servlets
+
+--
+* HTML Design Tools können nicht direkt verwendet werden
+* Wartung von Servlet-Seiten durch Java-Programmierung
+* Unübersichtlich
+--
+
+----
+out.print("<!DOCTYPE html>"+"<h2 style=\"text-align: 
+  center;\">WILLKOMMEN ZU MEINEM REFERAT</h2>\n" +
+----
+
+
+== Java Server Pages
+
+--
+* HTML Dateien .jsp
+* Direkte Verwendung von HTML für GUI
+* Java in HTML eingebettet
+* Basierend auf der Servlet-Technologie
+--
+
+=== MVC-Pattern
+
+image::java-jsp.jpg[]
+https://www.javatpoint.com/MVC-in-jsp
+
+=== MVC-Pattern
+
+* Model enthält Formulardaten -> Java Bean
+* View zeigt die Model-Daten an -> JSP
+* Controller verarbeitet die Eingaben -> Servlet 
+
+=== Lebenszyklus
+
+image::jsp-lebenszyklus.png[]
+http://www.bioinf.at/teaching/ss2010/pr-swe2/vortrag/06_JSP.pdf
+
+=== Übersetzung
+
+----
+<%@ page import="java.util.*" %>
+<% GregorianCalendar clock =
+ GregorianCalendar.getInstance(); %>
+<html>
+ <head>
+ <title>Clock</title>
+ </head>
+ <body>
+Die aktuelle Zeit ist: <%= clock.getTime() %> <br>
+Der Server steht in Zeitzone <%= clock.getTimeZone() %>
+</body>
+----
+
+----
+out.write("\n");
+out.write("<!DOCTYPE html PUBLIC…"); out.write("\r\n");
+out.write("<html>\n"); out.write("<head>\n");
+----
+
+
+=== Eingebetteter Java-Code
+
+--
+* Deklarationen
+* Lokale Variablen
+* Direkte Ausgabe
+--
+
+
+----
+<%! ... %>
+----
+
+----
+<% int i; %>
+----
+
+----
+<% if(Calendar.getInstance().get(Calendar.AM_PM) == Calendar.AM){
+out.print("Guten Morgen");
+ } else {
+out.print("Guten Tag");
+ } %>
+----
+
+=== Java Beans
+
+* Einfache Datenobjekte ohne Programmlogik
+** Transferobjekte im DAO Pattern
+** Datenobjekte zum Anzeigen/Bearbeiten in GUI
+
+* Unterstützung durch JSP-Tags
+** <jsp:useBean>
+** <jsp:setProperty>
+** <jsp:getProperty>
+
+=== Datenaustausch Servlets/JSPs
+
+* Beans mit scope: 
+** page
+** request
+** session
+** application
+
+----
+doGet(HttpServletRequest request,
+ HttpServletResponse response) {
+ ...
+ bean = (BeanType)request.getAttribute("beanName");
+----
+
+=== Vor- und Nachteile
+
+* Vorteil
+** Kann volle Vielfalt von Java nutzen
+** Portabel
+** Serverseitig
+
+* Nachteile
+** Serverseitig
+** Unübersichtlich
+
+== JavaServer Faces
+
+---
+==== "Sämtlicher Code verschwindet aus der JSP-Seite, alles wird mittels Tags realisiert."
+---
+
+=== Code Sample
+
+----
+<p:dataTable var="car" value="#{listCarController.cars}" 
+  rowKey="#{car.brand}" ..>
+----
+
+----
+<p:column headerText="Marke" filterBy="#{car.brand}" 
+  filterStyle="display:none">
+    <h:outputText value="#{car.brand}" />
+</p:column>
+----
+
+----
+<p:commandButton icon="pi pi-plus" style="margin:5px;" 
+  value="Autoteile hinzufügen" action="#{controller.addCarPart}" 
+    actionListener="#{listCarController.redirectToCarParts}">
+      <f:setPropertyActionListener value="#{car}" 
+        target="#{controller.car}"/>
+</p:commandButton>
+----
+
+=== PrimeFaces
+
+==== PrimeFaces ist eine Sammlung von UI-Komponenten für JavaServer Faces
+
+=== Praktisches Beispiel
+
+=== Mojarra
+
+==== JSF-Referenzimplementierung
+
+
+== Qute
+
+=== Templating engine
+
+* Einsatz von Reflection minimiert
+* Imperativ
+* Non-blocking reactive
+* Änderungen und Modifikationen sofort sichtbar
+
+=== Praktisches Beispiel
+
+== Application Frameworks
+
+image::applicationframeworks-trends.png[800,600]
+https://jaxenter.de/java/java-trends-frameworks-91786
+
+== Web Frameworks
+
+image::webframeworks-trends.png[800,600]
+https://jaxenter.de/java/java-trends-frameworks-91786
+
+== Quellen
+
+http://docplayer.org/1766268-Webseiten-mit-java-uebersicht-webtechnologien-webt-servlets-und-jsp-mit-separatem-webserver-was-sind-servlets.html
+
+https://www.data2type.de/xml-xslt-xslfo/xslt/java-und-xslt/java-basierte-webtechnologien/zusammenfassung-der-wichtigste/
+
+http://www.bioinf.at/teaching/ss2010/pr-swe2/vortrag/06_JSP.pdf
+
+https://quarkus.io/guides/qute
+
+https://www.data2type.de/xml-xslt-xslfo/xslt/java-und-xslt/java-basierte-webtechnologien/traditionelle-loesungsansaetze/
+
+http://www.ssw.uni-linz.ac.at/Teaching/Lectures/Sem/2000/Leitenmueller/#:~:text=Ein%20gro%C3%9Fer%20Vorteil%20ist%20gegen%C3%BCber,von%20Datenbanken%2C%20Server%20Informationen%20etc.
+
+https://www.torsten-horn.de/techdocs/jsp-grundlagen.HTML
+
+https://www.youtube.com/watch?v=uwDxIVHg1HY&ab_channel=SebastianDaschner
+
+https://webis.de/downloads/lecturenotes/web-technology/unit-de-server-technologies1.pdf
+
+https://www.doag.org/formes/pubfiles/1387656/docs/Konferenz/2009/vortraege/Development/172-2009-K-DEV_TOOLS-stiegler-Web_Technologien_Ueberblick.pdf
