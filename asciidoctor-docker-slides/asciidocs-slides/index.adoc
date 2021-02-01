@@ -32,6 +32,12 @@ https://www.ionos.at/digitalguide/websites/web-entwicklung/was-ist-ein-cgi/
 image::servlet-skizze.png[800,800]
 https://o7planning.org/de/10169/die-anleitung-zu-java-servlet
 
+=== Vorteile
+
+* Portabilität
+* Leistungsfähigkeit
+* Effizienz 
+
 === GUI mit Servlets
 
 --
@@ -49,7 +55,7 @@ out.print("<!DOCTYPE html>"+"<h2 style=\"text-align:
 == Java Server Pages
 
 --
-* JSPs sind Text-Dokumente .jsp
+* HTML Dateien .jsp
 * Direkte Verwendung von HTML für GUI
 * Java in HTML eingebettet
 * Basierend auf der Servlet-Technologie
@@ -132,8 +138,12 @@ out.print("Guten Tag");
 
 === Datenaustausch Servlets/JSPs
 
-* Beans mit scope = "page": sind privat in der JSP
-* Beans mit scope = "request":
+* Beans mit scope: 
+** page
+** request
+** session
+** application
+
 ----
 doGet(HttpServletRequest request,
  HttpServletResponse response) {
@@ -184,11 +194,6 @@ doGet(HttpServletRequest request,
 === PrimeFaces
 
 ==== PrimeFaces ist eine Sammlung von UI-Komponenten für JavaServer Faces
-
-=== Überblick
-
-image::jsf-skizze.png[800,800]
-https://entwickler.de/online/jsf-ueberblick-und-einsatzzweck-115542.html
 
 === Praktisches Beispiel
 
